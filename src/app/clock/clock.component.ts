@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './clock.component.css'
 })
 export class ClockComponent {
-
+  
 }

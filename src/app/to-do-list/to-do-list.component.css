@@ -1,0 +1,34 @@
+.gridContainer{
+    display: grid;
+    max-width: 600px;
+    margin: 0 auto;
+    grid-template: 80px 1fr / 1fr 1fr;
+    grid-template-areas: 
+        "clock pomodoro"
+        "task task";
+    height: 85vh;
+}
+@media(width < 450px){
+    .gridContainer{
+        grid-template-areas: 
+            "clock clock"
+            "pomodoro pomodoro"
+            "task task"
+    }
+}
+.task{
+    background-color: brown;
+    grid-area: task;
+    overflow-y: auto; 
+}
+.clock{
+    /* background-color: blue; */
+    grid-area: clock;
+}
+.pomodoro{
+    /* background-color: blueviolet; */
+    grid-area: pomodoro;
+}
+h1{
+    text-align: center;
+}

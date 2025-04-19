@@ -1,25 +1,39 @@
 <h1>To-Do List</h1>
-
-<div>
-    @for (task of taskList; track task; let i = $index) {
-    <div>
-        <input type="checkbox" id="status_{{i}}" name="status" [(ngModel)]="task.params.status">
-        <textarea [(ngModel)]="task.params.taskDescription"> {{ task.params.taskDescription }} </textarea>
-        <button (click)="delteTask(i)">Delete</button>
+<div class="gridContainer">
+    <div class="clock">
+        <h1>12:00:00 PM</h1>
     </div>
-    }
+    <div class="pomodoro">
+        <h1>Pomodoro</h1>
+    </div>
+    <div class="task">
+        <form (ngSubmit)="addTask(); taskForm.resetForm()" #taskForm="ngForm">
+            <label for="description">Description</label><br>
+            <input type="text" id="description" name="description" [(ngModel)]="newTaskDescription" required
+                #descriptionInput="ngModel" aria-describedby="descriptionError" autocomplete="off">
+            @if (descriptionInput.invalid && (descriptionInput.touched || descriptionInput.dirty)) {
+            <span id="descriptionError" aria-live="polite">
+                Please enter a description
+            </span>
+            }
+            <br><input type="submit" value="Submit" [disabled]="!taskForm.form.valid">
+        </form>
+        
+        @for (task of taskList; track task; let i = $index) {
+            <!-- 
+            - draggable="true" habilita la opcionde tomar y arrastrar
+            - (dragstart)="onDragStart($event, i) Envia parametros del evento la ubicación actual
+            - onDragOver: Permite que el elemento se pueda soltar en una ubicación.
+            - onDrop: Reorganiza la lista cuando el usuario suelta el elemento.
+            -->
+            <div draggable="true" (dragstart)="onDragStart($event, i)" (dragover)="onDragOver($event)"
+                (drop)="onDrop($event, i)">
+                <input type="checkbox" id="status_{{i}}" name="status"
+                    (click)="task.params.status?removeFinishedHour(i):addFinishedHour(i)" [(ngModel)]="task.params.status">
+                <span>{{task.params.finish_time}}</span>
+                <textarea [(ngModel)]="task.params.taskDescription"> {{ task.params.taskDescription }} </textarea>
+                <button (click)="delteTask(i)">Delete</button>
+            </div>
+            }
+    </div>
 </div>
-
-<form (ngSubmit)="addTask(); taskForm.resetForm()" #taskForm="ngForm">
-    <label for="description">Description</label><br>
-    <input
-    type="text" id="description" name="description"
-    [(ngModel)]="newTaskDescription" required #descriptionInput="ngModel"
-    aria-describedby="descriptionError">
-    @if (descriptionInput.invalid && (descriptionInput.touched || descriptionInput.dirty)) {
-        <span id="descriptionError" aria-live="polite">
-            Please enter a description
-        </span>
-      }
-    <br><input type="submit" value="Submit" [disabled]="!taskForm.form.valid">
-</form>
