@@ -1,34 +1,37 @@
 .gridContainer{
+    background-color: #309898;
     display: grid;
     max-width: 600px;
     margin: 0 auto;
+    /* height: 100vh; */
     grid-template: 80px 1fr / 1fr 1fr;
     grid-template-areas: 
         "clock pomodoro"
         "task task";
-    height: 85vh;
+    border-radius: 15px;
 }
+
 @media(width < 450px){
     .gridContainer{
+        grid-template: 80px 80px 1fr / 1fr;
         grid-template-areas: 
-            "clock clock"
-            "pomodoro pomodoro"
-            "task task"
+            "clock"
+            "pomodoro"
+            "task";
+        margin: 0 10px 0 10px;
     }
 }
-.task{
+
+section:task{
     background-color: brown;
     grid-area: task;
     overflow-y: auto; 
 }
-.clock{
+section:clock{
     /* background-color: blue; */
     grid-area: clock;
 }
-.pomodoro{
+section:pomodoro{
     /* background-color: blueviolet; */
     grid-area: pomodoro;
-}
-h1{
-    text-align: center;
 }

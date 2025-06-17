@@ -1,0 +1,22 @@
+.app-layout{
+    display: grid;
+    grid-template: 80px 1fr 80px / 1fr;
+    grid-template-areas: 
+        'header'
+        'main'
+        'footer';
+    height: 100vh;
+}
+
+.app-layout header{
+    text-align: center;
+}
+
+.app-layout main{
+    
+}
+
+.app-layout footer{
+    text-align: center;
+    background: #f5f5f5;
+}

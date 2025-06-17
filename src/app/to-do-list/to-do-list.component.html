@@ -1,12 +1,11 @@
-<h1>To-Do List</h1>
 <div class="gridContainer">
-    <div class="clock">
+    <section class="clock">
         <h1>12:00:00 PM</h1>
-    </div>
-    <div class="pomodoro">
+    </section>
+    <section class="pomodoro">
         <h1>Pomodoro</h1>
-    </div>
-    <div class="task">
+    </section>
+    <section class="task">
         <form (ngSubmit)="addTask(); taskForm.resetForm()" #taskForm="ngForm">
             <label for="description">Description</label><br>
             <input type="text" id="description" name="description" [(ngModel)]="newTaskDescription" required
@@ -35,5 +34,5 @@
                 <button (click)="delteTask(i)">Delete</button>
             </div>
             }
-    </div>
+    </section>
 </div>
