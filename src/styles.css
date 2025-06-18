@@ -6,3 +6,7 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #EEEEEE;
 }
+
+* {
+    box-sizing: border-box;
+}

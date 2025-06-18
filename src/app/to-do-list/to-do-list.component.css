@@ -2,13 +2,14 @@
     background-color: #309898;
     display: grid;
     max-width: 600px;
-    margin: 0 auto;
-    /* height: 100vh; */
+    margin: 0;
+    height: 100%;
     grid-template: 80px 1fr / 1fr 1fr;
     grid-template-areas: 
         "clock pomodoro"
         "task task";
     border-radius: 15px;
+    padding: 20px;
 }
 
 @media(width < 450px){
@@ -18,20 +19,17 @@
             "clock"
             "pomodoro"
             "task";
-        margin: 0 10px 0 10px;
+        margin: 0;
+        height: 100%;
     }
 }
 
 section:task{
-    background-color: brown;
     grid-area: task;
-    overflow-y: auto; 
 }
 section:clock{
-    /* background-color: blue; */
     grid-area: clock;
 }
 section:pomodoro{
-    /* background-color: blueviolet; */
     grid-area: pomodoro;
 }

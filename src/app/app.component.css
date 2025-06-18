@@ -1,6 +1,7 @@
+
 .app-layout{
     display: grid;
-    grid-template: 80px 1fr 80px / 1fr;
+    grid-template: 60px 1fr 60px / 1fr;
     grid-template-areas: 
         'header'
         'main'
@@ -10,10 +11,15 @@
 
 .app-layout header{
     text-align: center;
+    background-color: aqua
 }
 
 .app-layout main{
-    
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
 }
 
 .app-layout footer{
