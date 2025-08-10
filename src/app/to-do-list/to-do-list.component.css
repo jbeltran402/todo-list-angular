@@ -1,35 +1,64 @@
-.gridContainer{
+.gridContainer {
     background-color: #309898;
-    display: grid;
-    max-width: 600px;
-    margin: 0;
+    border-radius: 15px;
+    margin: auto;
     height: 100%;
+    width: 600px;
+    padding: 20px;
+    overflow-x: auto;
+    display: grid;
     grid-template: 80px 1fr / 1fr 1fr;
-    grid-template-areas: 
+    grid-template-areas:
         "clock pomodoro"
         "task task";
-    border-radius: 15px;
-    padding: 20px;
+    box-sizing: border-box;
 }
 
-@media(width < 450px){
-    .gridContainer{
-        grid-template: 80px 80px 1fr / 1fr;
-        grid-template-areas: 
-            "clock"
-            "pomodoro"
-            "task";
-        margin: 0;
-        height: 100%;
+@media(width < 600px) {
+    .gridContainer {
+        width: auto;
+
     }
 }
 
-section:task{
-    grid-area: task;
+@media(width < 450px) {
+    .gridContainer {
+        width: auto;
+        grid-template: 80px 80px 1fr / 1fr;
+        grid-template-areas:
+            "clock"
+            "pomodoro"
+            "task";
+    }
 }
-section:clock{
+
+section.task {
+    grid-area: task;
+    /* width: 100%; */
+}
+
+section.clock {
     grid-area: clock;
 }
-section:pomodoro{
+
+section.pomodoro {
     grid-area: pomodoro;
+}
+
+section h2 {
+    text-align: center;
+}
+
+form {
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    display: block;
+}
+
+input {
+    padding: 3px;
+    margin: 5px 0px;
+    border-radius: 10px;
+    border: 2px solid;
 }

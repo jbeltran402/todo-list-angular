@@ -15,7 +15,8 @@
                 Please enter a description
             </span>
             }
-            <br><input type="submit" value="Submit" [disabled]="!taskForm.form.valid">
+            <br>
+            <button type="submit" [disabled]="!taskForm.form.valid">Submit</button>
         </form>
         
         @for (task of taskList; track task; let i = $index) {
