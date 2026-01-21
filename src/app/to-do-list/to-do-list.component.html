@@ -1,39 +1,36 @@
 <div class="gridContainer">
     <section class="clock">
-        <h2>12:00:00 PM</h2>
+        <app-clock></app-clock>
     </section>
     <section class="pomodoro">
-        <h2>Pomodoro</h2>
+        <app-pomodoro-timer></app-pomodoro-timer>
     </section>
     <section class="task">
-        <form (ngSubmit)="addTask(); taskForm.resetForm()" #taskForm="ngForm">
-            <label for="description">Description</label><br>
-            <input type="text" id="description" name="description" [(ngModel)]="newTaskDescription" required
-                #descriptionInput="ngModel" aria-describedby="descriptionError" autocomplete="off">
-            @if (descriptionInput.invalid && (descriptionInput.touched || descriptionInput.dirty)) {
-            <span id="descriptionError" aria-live="polite">
-                Please enter a description
-            </span>
-            }
-            <br>
-            <button type="submit" [disabled]="!taskForm.form.valid">Submit</button>
-        </form>
-        
+            <form (ngSubmit)="addTask(); taskForm.resetForm(); " #taskForm="ngForm">
+                <label for="description">Description</label>
+                <div class="task-row">
+                    <textarea type="text" id="description" name="description" [(ngModel)]="newTaskDescription"
+                        #descriptionInput="ngModel" aria-describedby="descriptionError" rows="1"
+                        placeholder="Write your description here..." autocomplete="off"></textarea>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+
         @for (task of taskList; track task; let i = $index) {
-            <!-- 
+        <!-- 
             - draggable="true" habilita la opcionde tomar y arrastrar
             - (dragstart)="onDragStart($event, i) Envia parametros del evento la ubicación actual
             - onDragOver: Permite que el elemento se pueda soltar en una ubicación.
             - onDrop: Reorganiza la lista cuando el usuario suelta el elemento.
             -->
-            <div draggable="true" (dragstart)="onDragStart($event, i)" (dragover)="onDragOver($event)"
-                (drop)="onDrop($event, i)">
-                <input type="checkbox" id="status_{{i}}" name="status"
-                    (click)="task.params.status?removeFinishedHour(i):addFinishedHour(i)" [(ngModel)]="task.params.status">
-                <span>{{task.params.finish_time}}</span>
-                <textarea [(ngModel)]="task.params.taskDescription"> {{ task.params.taskDescription }} </textarea>
-                <button (click)="delteTask(i)">Delete</button>
-            </div>
-            }
+        <div draggable="true" (dragstart)="onDragStart($event, i)" (dragover)="onDragOver($event)"
+            (drop)="onDrop($event, i)" class="task-row">
+            <input type="checkbox" id="status_{{i}}" name="status"
+                (click)="task.params.status?removeFinishedHour(i):addFinishedHour(i)" [(ngModel)]="task.params.status">
+            <span>{{task.params.finish_time}}</span>
+            <textarea [(ngModel)]="task.params.taskDescription"></textarea>
+            <button (click)="delteTask(i)">Delete</button>
+        </div>
+        }
     </section>
 </div>

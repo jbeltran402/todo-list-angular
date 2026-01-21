@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { TaskList } from './interface';
 import { FormsModule } from '@angular/forms';
+import { ClockComponent } from '../clock/clock.component';
+import { PomodoroTimerComponent } from '../pomodoro-timer/pomodoro-timer.component';
 
 @Component({
   selector: 'app-to-do-list',
-  imports: [FormsModule],
+  imports: [FormsModule, ClockComponent, PomodoroTimerComponent],
   templateUrl: './to-do-list.component.html',
   styleUrl: './to-do-list.component.css'
 })
@@ -38,13 +40,12 @@ export class ToDoListComponent {
     this.taskList.push(newTask);
   }
 
-  delteTask(id:number): void{
+  delteTask(id: number): void {
     this.taskList.splice(id, 1);
   }
 
   onDragStart(event: DragEvent, index: number): void {
     this.draggedIndex = index;
-    // event.dataTransfer?.setData('text/plain', index.toString());
   }
 
   onDragOver(event: DragEvent): void {
@@ -60,13 +61,13 @@ export class ToDoListComponent {
     }
   }
 
-  addFinishedHour(index:number):void{
-    const currentDate:Date = new Date();
+  addFinishedHour(index: number): void {
+    const currentDate: Date = new Date();
     if (this.taskList[index]?.params) {
       this.taskList[index].params.finish_time = currentDate;
     }
   }
-  removeFinishedHour(index:number):void{
+  removeFinishedHour(index: number): void {
     if (this.taskList[index]?.params) {
       this.taskList[index].params.finish_time = undefined;
     }

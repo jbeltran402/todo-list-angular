@@ -2,22 +2,23 @@
     background-color: #309898;
     border-radius: 15px;
     margin: auto;
-    height: 100%;
     width: 600px;
     padding: 20px;
-    overflow-x: auto;
     display: grid;
     grid-template: 80px 1fr / 1fr 1fr;
     grid-template-areas:
         "clock pomodoro"
         "task task";
     box-sizing: border-box;
+    overflow: visible; 
 }
 
 @media(width < 600px) {
     .gridContainer {
         width: auto;
-
+    }
+    .gridinput {
+        width: auto;
     }
 }
 
@@ -34,7 +35,6 @@
 
 section.task {
     grid-area: task;
-    /* width: 100%; */
 }
 
 section.clock {
@@ -49,16 +49,76 @@ section h2 {
     text-align: center;
 }
 
-form {
-    margin: 0 auto;
-    padding: 10px;
-    width: 100%;
-    display: block;
+textarea {
+  width: 100%;
+  min-height: 10px;      /* Altura de un input normal */
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: block;
+  transition: border-color 0.2s;
+  resize: none;         /* Bloquea que el usuario lo estire manualmente */
+  overflow: hidden;     /* Oculta la barra de scroll lateral */
+  field-sizing: content; /* Hace que el elemento se ajuste al contenido */
 }
 
-input {
-    padding: 3px;
-    margin: 5px 0px;
-    border-radius: 10px;
-    border: 2px solid;
+textarea:focus {
+  outline: none;
+  border-color: #4A90E2;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  position: relative
+}
+
+/* 1. ESTO CORRIGE EL CHECKBOX Y EL BOTÓN */
+.task-row input[type="checkbox"],
+.task-row span,
+.task-row button {
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    height: 42px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-left: 1px solid #eee;
+    border-radius: 0 8px 8px 0; /* Redondeamos solo la derecha */
+    padding: 0 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    /* Sombra suave para que se note que flota cuando hay scroll */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    flex: 0 0 auto;    /* Prohibido crecer, prohibido encogerse */
+    width: auto;       /* Que ocupen solo lo que necesitan */
+    /* margin-left: -2px; Lo encajamos con el textarea */
+    /* height: 40px; Misma altura que la primera línea del textarea */
+}
+
+/* 2. ESTO CORRIGE EL TEXTAREA */
+.task-row textarea {
+  flex: 1;    /* Toma TODO el espacio restante disponible */
+  border-radius: 8px 0 0 8px; /* Redondeado solo a la izquierda */
+  border-right: none; /* Quitamos borde derecho para que encaje con el botón */
+  field-sizing: content; /* Para que crezca verticalmente con el texto */
+  margin-top: 0;
+  min-width: 0;      /* IMPORTANTE: permite que flex calcule el tamaño real */
+  width: 100%;       /* Intenta ocupar el ancho, pero flex: 1 lo limita al hueco */
+  resize: none;
 }

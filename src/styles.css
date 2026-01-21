@@ -20,3 +20,36 @@ h2 {
 * {
     box-sizing: border-box;
 }
+
+input {
+  width: 100%;             /* Que ocupe el ancho de su contenedor */
+  padding: 12px 16px;      /* Espacio interno para que el texto no toque los bordes */
+  margin: 8px 0;           /* Espacio por fuera */
+  display: inline-block;
+  border: 1px solid #ccc;  /* Un borde sutil */
+  border-radius: 8px;      /* Bordes redondeados modernos */
+  box-sizing: border-box;  /* Asegura que el padding no afecte el ancho total */
+  font-size: 16px;         /* Tamaño de fuente cómodo para leer */
+  outline: none;           /* Quitamos el borde azul por defecto de algunos navegadores */
+  transition: 0.3s;        /* Para que los cambios de color sean suaves */
+}
+
+/* Cuando el usuario pasa el mouse por encima */
+input:hover {
+  border-color: #888;
+}
+
+/* Cuando el usuario hace clic para escribir */
+input:focus {
+  border-color: #FF9F00;    /* Cambia a un color de marca */
+  box-shadow: 0 0 8px rgba(255, 159, 0, 0.2); /* Un resplandor suave */
+}
+
+input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+input:invalid {
+  border-color: #CB0404;
+}
