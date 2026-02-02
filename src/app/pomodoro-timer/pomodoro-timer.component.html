@@ -1,4 +1,7 @@
 <div>
+    <button (click)="changeMode('focus')" [class.active]="timer_mode() === 'focus'"> Focus </button>
+    <button (click)="changeMode('short')" [class.active]="timer_mode() === 'short'"> Short Break </button>
+    <button (click)="changeMode('long')" [class.active]="timer_mode() === 'long'"> Long Break </button>
     <h2>{{ seconds() * 1000 | date : (seconds() >= 3600 ? 'HH:mm:ss' : 'mm:ss'): 'UTC' }}</h2>
     <button (click)="countdown_timer('reduce_time')"> - </button>
     <button (click)="countdown_timer(status ? 'start' : 'stop')"> {{ status ? 'start' : 'stop'}} </button>
