@@ -1,1 +1,2 @@
-<p>clock works!</p>
+<button (click)="toggleFormat()">Reloj</button>
+<h1>{{ clock() | date: (format() ? 'HH:mm:ss' : 'hh:mm:ss a') }}</h1>
